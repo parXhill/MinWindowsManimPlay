@@ -39,6 +39,15 @@ class MinWindowVisualization(Scene):
         # Wait for a moment
         self.wait(1)
 
+        # Create a box for "Current Letters"
+        current_letters_box = Rectangle(width=4, height=3, color=WHITE).to_corner(UP+RIGHT)
+        current_letters_title = Text("Current Letters").next_to(current_letters_box, UP)
+        current_letters_text = Text("").move_to(current_letters_box.get_center())
+
+        self.play(Create(current_letters_box), Write(current_letters_title), Write(current_letters_text))
+
+        current_letters = []
+
         # Move the blue dot and expand the brace to simulate sliding window
         for i in range(2, len(string)):
             new_brace = Brace(text_objects[:i+1], DOWN)
@@ -46,11 +55,20 @@ class MinWindowVisualization(Scene):
             new_blue_dot = Dot(color=BLUE).next_to(text_objects[i], UP)
             new_r_label = Text("R", color=BLUE).next_to(new_blue_dot, UP)
 
-            self.play(Transform(brace, new_brace), Transform(brace_text, new_brace_text), Transform(blue_dot, new_blue_dot), Transform(r_label, new_r_label))
+            current_letters.append(string[i])
+            updated_letters_text = Text("".join(current_letters)).move_to(current_letters_box.get_center())
+
+            self.play(
+                Transform(brace, new_brace), 
+                Transform(brace_text, new_brace_text), 
+                Transform(blue_dot, new_blue_dot), 
+                Transform(r_label, new_r_label),
+                Transform(current_letters_text, updated_letters_text)
+            )
             self.wait(0.5)
 
         # End scene
-        self.play(FadeOut(VGroup(brace, brace_text, red_dot, l_label, blue_dot, r_label, text_objects)))
+        self.play(FadeOut(VGroup(brace, brace_text, red_dot, l_label, blue_dot, r_label, text_objects, current_letters_box, current_letters_title, current_letters_text)))
 
 # To run the animation, use the following command:
 # manim -pql min_window_visualization.py MinWindowVisualization
