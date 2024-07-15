@@ -3,7 +3,7 @@ from manim import *
 class MinWindowVisualization(Scene):
     def construct(self):
         # Create a string to visualize
-        string = "ADOBECODEBANC"
+        string = "ZADOBECODEBANC"
         text_objects = VGroup(*[Text(char) for char in string])
 
         # Arrange the characters in a horizontal line
@@ -75,14 +75,17 @@ class MinWindowVisualization(Scene):
 
                 self.play(
                     Transform(brace, new_brace), 
-                    Transform(brace_text, new_brace_text)
+                    Transform(brace_text, new_brace_text),
+                    Transform(blue_dot, new_blue_dot), 
+                    Transform(r_label, new_r_label),
+                    Transform(current_letters_text, updated_letters_text)
                 )
-
-            self.play(
-                Transform(blue_dot, new_blue_dot), 
-                Transform(r_label, new_r_label),
-                Transform(current_letters_text, updated_letters_text)
-            )
+            else:
+                self.play(
+                    Transform(blue_dot, new_blue_dot),
+                    Transform(r_label, new_r_label)
+                )
+            
             self.wait(0.5)
 
         # End scene
