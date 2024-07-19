@@ -13,8 +13,15 @@ class AzureExample(VoiceoverScene):
         )
 
         circle = Circle()
+        circle2= Circle().set_color(RED).scale(0)
         square = Square().shift(2 * RIGHT)
+        
+        with self.voiceover(text="This first test.") as tracker:
+            self.play(Create(circle2), run_time=tracker.duration)
 
+        with self.voiceover(text="and a second one. this is a test to see if this keeps going and overlaps i hope so") as tracker:
+            self.play(Create(circle2), run_time=1)
+        
         with self.voiceover(text="This circle is drawn as I speak.") as tracker:
             self.play(Create(circle), run_time=tracker.duration)
 

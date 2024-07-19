@@ -13,6 +13,8 @@ class MinWindowVisualization(VoiceoverScene):
             )
         )
 
+        silencer = Circle().scale(0)
+
         # Create a string to visualize
         string = "ACACCDCBECCDEBACCA"
         text_objects = VGroup(*[Text(char) for char in string])
@@ -22,8 +24,8 @@ class MinWindowVisualization(VoiceoverScene):
         text_objects.shift(DOWN * 2)
 
         # Slide the string onto the screen
-        with self.voiceover(text="Speak this out") as tracker:
-            self.play(FadeIn(text_objects, shift=RIGHT*3))
+        with self.voiceover(text="Our goal is to find the minimum window within which our string contains all the target letters.") as tracker:
+            self.play(FadeIn(text_objects, shift=RIGHT*3),run_time=tracker.duration)
         
         # Wait for a moment
         self.wait(1)
@@ -32,14 +34,15 @@ class MinWindowVisualization(VoiceoverScene):
         red_dot = Dot(color=RED).next_to(text_objects[0], LEFT)
         l_label = Text("L", color=RED).next_to(red_dot, UP)
 
-        with self.voiceover(text="And this") as tracker:
-            self.play(FadeIn(red_dot), Write(l_label))
+        with self.voiceover(text="We start by setting a left pointer that tracks the index of the start of the window") as tracker:
+            self.play(FadeIn(red_dot), Write(l_label),run_time=tracker.duration)
 
         # Create a blue dot labeled 'R' immediately before index 0
         blue_dot = Dot(color=BLUE).next_to(text_objects[0], UP)
         r_label = Text("R", color=BLUE).next_to(blue_dot, UP)
 
-        self.play(FadeIn(blue_dot), Write(r_label))
+        with self.voiceover(text="And a right pointer that tracks the index of the end of the window") as tracker:
+            self.play(FadeIn(blue_dot), Write(r_label), run_time=tracker.duration)
         
         # Wait for a moment
         self.wait(1)
@@ -49,9 +52,6 @@ class MinWindowVisualization(VoiceoverScene):
         current_letters_box.shift(DOWN*0.8)
         current_letters_title = Text("Current Letters").next_to(current_letters_box, UP).scale(0.7)
         current_letters_text = VGroup().move_to(current_letters_box.get_center())
-
-        with self.voiceover(text="And this") as tracker:
-            self.play(Create(current_letters_box), Write(current_letters_title), Write(current_letters_text))
 
         # Create a box for "Target Letters"
         target_letters_box = Rectangle(width=4, height=3, color=WHITE).to_corner(UP+LEFT)
@@ -63,15 +63,24 @@ class MinWindowVisualization(VoiceoverScene):
             *[Text(f"{key}: {value}", color=WHITE) for key, value in target_letter_counts.items()]
         ).arrange(DOWN, buff=0.1).move_to(target_letters_box.get_center())
 
-        with self.voiceover(text="And this") as tracker:
-            self.play(Create(target_letters_box), Write(target_letters_title), Write(target_letters_text))
+        with self.voiceover(text="Now, we create a hashmap of the letters and value counts that are present in our target string") as tracker:
+            self.play(Create(target_letters_box), Write(target_letters_title), Write(target_letters_text),run_time=tracker.duration)
+
+        with self.voiceover(text="And a hashmap that will track the characters that appear in our current window") as tracker:
+            self.play(Create(current_letters_box), Write(current_letters_title), Write(current_letters_text),run_time=tracker.duration)
 
         current_letter_counts = {}
         brace = None
         brace_text = None
 
+        self.wait(2)
+
+        with self.voiceover(text="For our window to be complete, it must contain all the values of the target string.") as tracker:
+            self.play(Create(silencer))
+
         # Move the blue dot and expand the brace to simulate sliding window
         for i in range(0, 9):
+
             new_blue_dot = Dot(color=BLUE).next_to(text_objects[i], UP)
             new_r_label = Text("R", color=BLUE).next_to(new_blue_dot, UP)
 
@@ -89,7 +98,10 @@ class MinWindowVisualization(VoiceoverScene):
                 # Create and show the brace when R reaches the first index
                 brace = Brace(text_objects[:i+1], DOWN)
                 brace_text = Text("Current Window").scale(0.7).next_to(brace, DOWN)
-                self.play(Create(brace), Write(brace_text))
+
+                with self.voiceover(text="We start by expanding our window to the right until it contains all the target characters.") as tracker:
+                    self.play(Create(brace), Write(brace_text))
+
 
             if brace and brace_text:
                 new_brace = Brace(text_objects[:i+1], DOWN)
@@ -126,34 +138,30 @@ class MinWindowVisualization(VoiceoverScene):
                 target_letters_box.set_color(WHITE)
 
             self.wait(0.5)
- 
-        
+
+        self.play(text_objects[0:9].animate.set_color(GREEN),run_time=0.5) #flash?
+
+        with self.voiceover(text="When our window contains all the target characters, we have met the requirements for our first minimum substring. We stop expanding, and record the sequence.") as tracker:
+            self.play(Create(silencer))
+
         # Create a box for "Minimum String"
         minimum_string_box = Rectangle(width=4, height=3, color=WHITE).next_to(target_letters_box, RIGHT, buff=0.6)
         minimum_string_title = Text("Minimum String").next_to(minimum_string_box, UP).scale(0.7)
 
         self.play(Create(minimum_string_box), Write(minimum_string_title))
        
-        self.play(text_objects[0:9].animate.set_color(GREEN),run_time=0.5) #flash?
         copied_text = text_objects[0:9].copy()
         self.play(copied_text.animate.move_to(minimum_string_box.get_center()))
         self.play(text_objects[0:9].animate.set_color(WHITE),run_time=0.5)
 
-        #minimum_string_text = Text("").move_to(minimum_string_box.get_center())
-        #minimum_string_text.set_color(GREEN)
-
-    
-
-        # Move the current window string to the minimum string box
-        current_window_string = ''.join(string[:9])
-        #minimum_string_text = Text(current_window_string).move_to(minimum_string_box.get_center())
-
-        #self.play(Write(minimum_string_text))
+        
+        with self.voiceover(text="Then, to see whether we can make it any smaller, we begin to contract our window from the left, removing characters one by one to find the smallest viable substring.") as tracker:
+            self.play(Create(silencer))
 
         # Narrow the window brace one index at a time until it reaches the second A in the string
         for i in range(0, 4):
 
-            if i == 3:
+            if i in [2, 3]:
                 #self.play(FadeOut(minimum_string_text))
                 self.play(text_objects[i-1:9].animate.set_color(GREEN),run_time=0.5) #flash?
                 self.play(FadeOut(copied_text))
@@ -164,7 +172,7 @@ class MinWindowVisualization(VoiceoverScene):
                 #new_minimum_string_text = Text(new_current_window_string).move_to(minimum_string_box.get_center())
                 #new_minimum_string_text.set_color(GREEN)
                 #self.play(Transform(minimum_string_text, new_minimum_string_text))
-                self.wait(3)
+                self.wait(1)
 
             new_red_dot = Dot(color=RED).next_to(text_objects[i], UP)
             new_l_label = Text("L", color=RED).next_to(new_red_dot, UP)
@@ -207,9 +215,12 @@ class MinWindowVisualization(VoiceoverScene):
                 Transform(current_letters_text, updated_letters_text)
             )
             
-            
             self.wait(0.5)
 
+            if i == 3:
+                with self.voiceover(text="Once our window no longer contains all the target letters, we have found the smallest viable sub-string so far. And so, we begin to expand again towards the right to find the next viable window.") as tracker:
+                    self.play(Create(silencer))
+                
         for i in range(9, 15):
 
 
@@ -228,11 +239,11 @@ class MinWindowVisualization(VoiceoverScene):
                 *[Text(f"{key}: {value}") for key, value in current_letter_counts.items()]
             ).arrange(DOWN, buff=0.1).move_to(current_letters_box.get_center())
 
-            if i == 0:
+            #if i == 0:
                 # Create and show the brace when R reaches the first index
-                brace = Brace(text_objects[:i+1], DOWN)
-                brace_text = Text("Current Window").scale(0.7).next_to(brace, DOWN)
-                self.play(Create(brace), Write(brace_text))
+                #brace = Brace(text_objects[:i+1], DOWN)
+                #brace_text = Text("Current Window").scale(0.7).next_to(brace, DOWN)
+                #self.play(Create(brace), Write(brace_text))
 
             if brace and brace_text:
                 new_brace = Brace(text_objects[3:i+1], DOWN)
@@ -258,11 +269,11 @@ class MinWindowVisualization(VoiceoverScene):
                 if target_letter.text[0] not in current_letter_counts or current_letter_counts[target_letter.text[0]] < target_letter_counts[target_letter.text[0]]:
                     target_letter.set_color(WHITE)
 
-            else:
-                self.play(
-                    Transform(blue_dot, new_blue_dot),
-                    Transform(r_label, new_r_label)
-                )
+            #else:
+                #self.play(
+                    #Transform(blue_dot, new_blue_dot),
+                    #Transform(r_label, new_r_label))
+                
             
 
             if all(target_letter.get_color() == GREEN for target_letter in target_letters_text):
@@ -273,15 +284,19 @@ class MinWindowVisualization(VoiceoverScene):
 
             self.wait(0.5)
 
+            if i == 14:
+                with self.voiceover(text="Once we have found another viable window, we stop expanding. If the string is smaller than the minimum, we record it. Otherwise, we begin to contract the window from the left again, to see if we can find a viable string that is smaller than the minimum.") as tracker:
+                    self.play(Create(silencer))
+
          # Narrow the window brace one index at a time until it reaches the second A in the string
         for i in range(4, 13):
 
-            if i == 12:
-                self.play(text_objects[11:15].animate.set_color(GREEN),run_time=0.5) #flash?
+            if i in [10, 11, 12]:
+                self.play(text_objects[i-1:15].animate.set_color(GREEN),run_time=0.5) #flash?
                 self.play(FadeOut(copied_text))
-                copied_text = text_objects[11:15].copy()
+                copied_text = text_objects[i-1:15].copy()
                 self.play(copied_text.animate.move_to(minimum_string_box.get_center()))
-                self.play(text_objects[11:15].animate.set_color(WHITE),run_time=0.5)
+                self.play(text_objects[i-1:15].animate.set_color(WHITE),run_time=0.5)
                 self.wait(3)
 
             new_red_dot = Dot(color=RED).next_to(text_objects[i], UP)
@@ -306,7 +321,7 @@ class MinWindowVisualization(VoiceoverScene):
                     target_letter.set_color(GREEN)
                 if target_letter.text[0] in current_letter_counts:
                     index = [text.text.split(":")[0] for text in updated_letters_text].index(target_letter.text[0])
-                    updated_letters_text[index].set_color(GREEN)
+                    #updated_letters_text[index].set_color(GREEN)
                 if target_letter.text[0] not in current_letter_counts or current_letter_counts[target_letter.text[0]] < target_letter_counts[target_letter.text[0]]:
                     target_letter.set_color(WHITE)
 
@@ -374,7 +389,7 @@ class MinWindowVisualization(VoiceoverScene):
                     target_letter.set_color(GREEN)
                 if target_letter.text[0] in current_letter_counts:
                     index = [text.text.split(":")[0] for text in updated_letters_text].index(target_letter.text[0])
-                    updated_letters_text[index].set_color(GREEN)
+                    #updated_letters_text[index].set_color(GREEN)
                 if target_letter.text[0] not in current_letter_counts or current_letter_counts[target_letter.text[0]] < target_letter_counts[target_letter.text[0]]:
                     target_letter.set_color(WHITE)
 

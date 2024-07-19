@@ -1,0 +1,44 @@
+1
+00:00:00,000 --> 00:00:02,600
+Our goal is to find the minimum window within
+
+2
+00:00:02,700 --> 00:00:05,540
+which our string contains all the target letters.
+
+3
+00:00:06,650 --> 00:00:09,215
+We start by setting a left pointer that tracks
+
+4
+00:00:09,315 --> 00:00:11,302
+the index of the start of the window
+
+5
+00:00:11,416 --> 00:00:15,204
+And a right pointer that tracks the index of the end of the window
+
+6
+00:00:16,316 --> 00:00:18,746
+Now, we create a hashmap of the letters and
+
+7
+00:00:18,846 --> 00:00:21,688
+value counts that are present in our target string
+
+8
+00:00:21,800 --> 00:00:25,081
+And a hashmap that will track the characters that appear
+
+9
+00:00:25,181 --> 00:00:28,160
+in our current window. For a window to be complete,
+
+10
+00:00:28,260 --> 00:00:31,300
+it must contain all the values of the target hashmap
+
+11
+00:00:31,400 --> 00:00:35,356
+We start by opening the current window and expanding it to the right
+

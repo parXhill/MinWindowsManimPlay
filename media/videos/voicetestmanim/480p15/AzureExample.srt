@@ -1,20 +1,32 @@
 1
-00:00:00,000 --> 00:00:02,708
-This circle is drawn as I speak.
+00:00:00,000 --> 00:00:01,916
+This first test.
 
 2
-00:00:02,808 --> 00:00:05,660
-Let's shift it to the left 2 units.
+00:00:02,066 --> 00:00:05,121
+and a second one. this is a test to see
 
 3
-00:00:05,760 --> 00:00:09,188
-Now, let's transform it into a square.
+00:00:05,221 --> 00:00:08,518
+if this keeps going and overlaps i hope so
 
 4
-00:00:09,288 --> 00:00:12,740
-You can also change the pitch of my voice like this.
+00:00:08,600 --> 00:00:11,308
+This circle is drawn as I speak.
 
 5
-00:00:12,840 --> 00:00:14,756
+00:00:11,466 --> 00:00:14,318
+Let's shift it to the left 2 units.
+
+6
+00:00:14,466 --> 00:00:17,894
+Now, let's transform it into a square.
+
+7
+00:00:18,000 --> 00:00:21,452
+You can also change the pitch of my voice like this.
+
+8
+00:00:21,533 --> 00:00:23,449
 Thank you for watching.
 

@@ -1,16 +1,104 @@
 1
-00:00:00,000 --> 00:00:01,220
-Speak this out
+00:00:00,000 --> 00:00:02,600
+Our goal is to find the minimum window within
 
 2
-00:00:02,266 --> 00:00:03,030
-And this
+00:00:02,700 --> 00:00:05,540
+which our string contains all the target letters.
 
 3
-00:00:05,266 --> 00:00:06,030
-And this
+00:00:06,666 --> 00:00:09,232
+We start by setting a left pointer that tracks
 
 4
-00:00:06,266 --> 00:00:07,030
-And this
+00:00:09,332 --> 00:00:11,318
+the index of the start of the window
+
+5
+00:00:11,466 --> 00:00:15,254
+And a right pointer that tracks the index of the end of the window
+
+6
+00:00:16,400 --> 00:00:18,830
+Now, we create a hashmap of the letters and
+
+7
+00:00:18,930 --> 00:00:21,772
+value counts that are present in our target string
+
+8
+00:00:21,933 --> 00:00:23,756
+And a hashmap that will track the
+
+9
+00:00:23,856 --> 00:00:26,321
+characters that appear in our current window
+
+10
+00:00:28,466 --> 00:00:30,713
+For our window to be complete, it must
+
+11
+00:00:30,813 --> 00:00:33,430
+contain all the values of the target string.
+
+12
+00:00:33,466 --> 00:00:35,690
+We start by expanding our window to the
+
+13
+00:00:35,790 --> 00:00:38,670
+right until it contains all the target characters.
+
+14
+00:01:01,466 --> 00:01:04,803
+When our window contains all the target characters, we
+
+15
+00:01:04,903 --> 00:01:08,494
+have met the requirements for our first minimum substring.
+
+16
+00:01:08,594 --> 00:01:11,230
+We stop expanding, and record the sequence.
+
+17
+00:01:13,800 --> 00:01:16,484
+Then, to see whether we can make it any smaller,
+
+18
+00:01:16,584 --> 00:01:19,675
+we begin to contract our window from the left, removing
+
+19
+00:01:19,775 --> 00:01:23,156
+characters one by one to find the smallest viable substring.
+
+20
+00:01:37,200 --> 00:01:41,167
+Once our window no longer contains all the target letters, we have
+
+21
+00:01:41,267 --> 00:01:45,111
+found the smallest viable sub-string so far. And so, we begin to
+
+22
+00:01:45,211 --> 00:01:48,932
+expand again towards the right to find the next viable window.
+
+23
+00:01:57,800 --> 00:02:01,752
+Once we have found another viable window, we stop expanding. If the
+
+24
+00:02:01,852 --> 00:02:05,925
+string is smaller than the minimum, we record it. Otherwise, we begin
+
+25
+00:02:06,025 --> 00:02:09,312
+to contract the window from the left again, to see if we
+
+26
+00:02:09,412 --> 00:02:12,820
+can find a viable string that is smaller than the minimum.
 
