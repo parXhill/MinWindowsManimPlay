@@ -1,0 +1,4 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/alexanderparkhill/myenv/Manim Play/media/videos/azurevoicetest/480p15/partial_movie_files/RecorderExample/1185818338_715053234_223132457.mp4'
+file 'file:/Users/alexanderparkhill/myenv/Manim Play/media/videos/azurevoicetest/480p15/partial_movie_files/RecorderExample/624642324_3636024140_2060486491.mp4'
+file 'file:/Users/alexanderparkhill/myenv/Manim Play/media/videos/azurevoicetest/480p15/partial_movie_files/RecorderExample/624642324_2861485622_1460023451.mp4'

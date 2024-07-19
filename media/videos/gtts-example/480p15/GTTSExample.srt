@@ -1,0 +1,16 @@
+1
+00:00:00,000 --> 00:00:02,804
+This circle is drawn as I speak.
+
+2
+00:00:02,933 --> 00:00:05,953
+Let's shift it to the left 2 units.
+
+3
+00:00:06,066 --> 00:00:09,566
+Now, let's transform it into a square.
+
+4
+00:00:09,666 --> 00:00:11,342
+Thank you for watching.
+

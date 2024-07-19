@@ -1,0 +1,8 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/alexanderparkhill/myenv/Manim Play/media/videos/voicetestmanim/480p15/partial_movie_files/AzureExample/1185818338_3722403788_223132457.mp4'
+file 'file:/Users/alexanderparkhill/myenv/Manim Play/media/videos/voicetestmanim/480p15/partial_movie_files/AzureExample/624642324_1925811705_4272345035.mp4'
+file 'file:/Users/alexanderparkhill/myenv/Manim Play/media/videos/voicetestmanim/480p15/partial_movie_files/AzureExample/624642324_2068311789_4272345035.mp4'
+file 'file:/Users/alexanderparkhill/myenv/Manim Play/media/videos/voicetestmanim/480p15/partial_movie_files/AzureExample/624642324_536810452_109740524.mp4'
+file 'file:/Users/alexanderparkhill/myenv/Manim Play/media/videos/voicetestmanim/480p15/partial_movie_files/AzureExample/624642324_1919272323_1460023451.mp4'
+file 'file:/Users/alexanderparkhill/myenv/Manim Play/media/videos/voicetestmanim/480p15/partial_movie_files/AzureExample/624642324_4132915044_1071484169.mp4'
+file 'file:/Users/alexanderparkhill/myenv/Manim Play/media/videos/voicetestmanim/480p15/partial_movie_files/AzureExample/624642324_1704852926_3632999845.mp4'
