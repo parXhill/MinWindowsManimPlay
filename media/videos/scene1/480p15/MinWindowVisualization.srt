@@ -1,0 +1,24 @@
+1
+00:00:01,000 --> 00:00:01,860
+Welcome
+
+2
+00:00:05,000 --> 00:00:07,948
+For this coding challenge, we are given two strings.
+
+3
+00:00:08,000 --> 00:00:09,292
+-a main string-
+
+4
+00:00:12,000 --> 00:00:13,556
+-and a target string.
+
+5
+00:00:15,000 --> 00:00:17,826
+Our goal is to find the smallest section of the main
+
+6
+00:00:17,926 --> 00:00:21,260
+string that contains all the characters in the target string.
+
